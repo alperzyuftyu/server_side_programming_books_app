@@ -1,3 +1,11 @@
-### 1. Verstuur een GET request
+### Verstuur een GET request: all books
 GET http://localhost:8080/api/books
+Content-Type: application/json
+
+### Verstuur een GET request: all books met filter
+GET http://localhost:8080/api/books?titleKeyWord=aa
+Content-Type: application/json
+
+### Verstuur een GET request: 1 book
+GET http://localhost:8080/api/books/1
 Content-Type: application/json
