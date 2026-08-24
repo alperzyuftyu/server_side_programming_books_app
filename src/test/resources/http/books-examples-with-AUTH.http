@@ -1,0 +1,70 @@
+### =====================
+### STEP 1: Get CSRF token first!
+### Run this authenticated GET request - check the response cookies for XSRF-TOKEN
+### Copy the token value and paste it in the @csrf variable below
+### =====================
+GET http://localhost:8080/api/books
+Authorization: Basic YWRtaW46YWRtaW4=
+Accept: application/json
+
+### =====================
+### Set your CSRF token here after running the GET request above
+### Copy from response cookies tab: XSRF-TOKEN=<value>
+### =====================
+@csrf = YOUR_TOKEN_HERE
+### DO NOT COMMIT THIS CHANGE!!!!
+
+### =====================
+### Books
+### =====================
+
+### Get all books
+GET http://localhost:8080/api/books
+Accept: application/json
+
+### Create a new book (requires authentication + CSRF)
+POST http://localhost:8080/api/books
+Content-Type: application/json
+Authorization: Basic YWRtaW46YWRtaW4=
+X-XSRF-TOKEN: {{csrf}}
+
+{
+  "title": "The Great Gatsby",
+  "description": "A novel about the American Dream"
+}
+
+### Edit a book
+PUT http://localhost:8080/api/books/1
+Content-Type: application/json
+Authorization: Basic YWRtaW46YWRtaW4=
+X-XSRF-TOKEN: {{csrf}}
+
+{
+  "id": 1,
+  "title": "Updated Book Title",
+  "description": "Updated description"
+}
+
+### Delete a book
+DELETE http://localhost:8080/api/books/1
+Authorization: Basic YWRtaW46YWRtaW4=
+X-XSRF-TOKEN: {{csrf}}
+
+### =====================
+### Authentication
+### =====================
+
+### Authenticate (check current user)
+GET http://localhost:8080/api/authenticate
+Authorization: Basic YWRtaW46YWRtaW4=
+
+### Sign up new user
+POST http://localhost:8080/api/signup
+Content-Type: application/json
+X-XSRF-TOKEN: {{csrf}}
+
+{
+  "username": "newuser",
+  "password": "password123",
+  "email": "newuser@example.com"
+}
