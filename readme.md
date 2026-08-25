@@ -141,6 +141,14 @@ Users can also register new accounts via the signup endpoint.
 - MockMvc for controller testing with automatic CSRF token handling
 - Test classes organized by controller and operation
 
+### Running Tests from Command Line
+
+To run unit tests quickly without rebuilding the frontend:
+```bash
+mvn test "-Dskip.installnodedeps=true" "-Dskip.npm=true" "-Dmaven.antrun.skip=true"
+```
+
+
 
 ## Common Development Tasks
 

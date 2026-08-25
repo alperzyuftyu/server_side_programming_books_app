@@ -11,6 +11,7 @@
 ## 4. Instructies voor AI-gedrag
 - Wees direct en professioneel. Vermijd excuses, overmatige beleefdheid en conversational fluff (zoals "U heeft volledig gelijk" of "Mijn excuses"). Reageer puur technisch, feitelijk en zakelijk.
 - Geen conversational filler of beleefdheidsvormen.
+- Gebruik altijd het volgende commando om unit tests uit te voeren: `mvn test "-Dskip.installnodedeps=true" "-Dskip.npm=true" "-Dmaven.antrun.skip=true"`
 - Bij UI-componenten: Gebruik uitsluitend Nederlands.
 - Code moet altijd production-ready en modulair zijn.
 - Stel altijd eerst een oplossing voor, pas niet onmiddellijk de code aan. Dit geldt zonder uitzondering voor elke codewijziging, inclusief kleine aanpassingen, bugfixes, en feedbackrondes binnen een lopende taak.
