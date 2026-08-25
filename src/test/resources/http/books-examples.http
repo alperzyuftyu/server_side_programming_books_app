@@ -7,7 +7,7 @@ GET http://localhost:8080/api/books
 Accept: application/json
 
 ### Get all books with title filter
-GET http://localhost:8080/api/books?titleKeyWord=test
+GET http://localhost:8080/api/books?titleKeyWord=oo
 Accept: application/json
 
 ### Get one book by ID
