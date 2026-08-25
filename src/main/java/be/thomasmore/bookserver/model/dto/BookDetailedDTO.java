@@ -11,7 +11,7 @@ import java.util.List;
  */
 @Builder(toBuilder = true)
 public record BookDetailedDTO(
-        int id,
+        Integer id,
         @NotBlank(message = "Book Title should not be blank")
         String title,
         List<AuthorDTO> authors

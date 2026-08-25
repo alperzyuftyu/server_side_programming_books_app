@@ -8,7 +8,7 @@ import lombok.Builder;
  */
 @Builder(toBuilder = true)
 public record AuthorDTO(
-        int id,
+        Integer id,
         String name
 ) {
 }

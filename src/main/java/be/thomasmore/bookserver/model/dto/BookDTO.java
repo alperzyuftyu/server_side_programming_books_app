@@ -10,7 +10,7 @@ import java.util.List;
  */
 @Builder(toBuilder = true)
 public record BookDTO(
-        int id,
+        Integer id,
         String title,
         List<AuthorDTO> authors
 ) {
