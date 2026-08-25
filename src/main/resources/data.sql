@@ -1,6 +1,6 @@
-insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('Oryx and Crake', 2003, 'Een speculatieve fictie roman van Margaret Atwood.', 'Nederlands');
-insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('The year of the flood', 2009, 'Het tweede boek in de MaddAddam-trilogie.', 'Nederlands');
-insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('MaddAddam', 2013, 'Het spannende slotstuk van de trilogie.', 'Nederlands');
+insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('Oryx and Crake', 2003, 'Een speculatieve fictie roman van Margaret Atwood.', 'ENGELS');
+insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('The year of the flood', 2009, 'Het tweede boek in de MaddAddam-trilogie.', 'Engels');
+insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('MaddAddam', 2013, 'Het spannende slotstuk van de trilogie.', 'Engels');
 insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('1Q84', 2009, 'Een dystopische roman geschreven door Haruki Murakami.', 'Nederlands');
 insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('De opwindvogelkronieken', 1994, 'Een meesterwerk over de zoektocht naar een vermiste kat en echtgenote.', 'Nederlands');
 insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('Design Patterns', 1994, 'Klassiek software engineering boek over herbruikbare ontwerppatronen.', 'Engels');
