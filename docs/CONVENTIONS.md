@@ -40,8 +40,8 @@ Coding Conventions
 
 ### Html
 
-* Url alleen kleine letters en -
-* html files alleen kleine letters en -
+* Url alleen kleine letters en - (kebab-case)
+* html files alleen kleine letters en - (kebab-case)
 
 ## 4. Java
 
