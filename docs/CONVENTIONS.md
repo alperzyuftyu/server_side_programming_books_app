@@ -101,6 +101,8 @@ Coding Conventions
 * Niet filteren of sorteren in java, laat dat doen door de database!
 * Correct gebruik van Request Param (filteren, sorteren, extra input fields doorsturen naar server ) en Path Variable (
   id van een specifieke entity)
+* Request Handlers zijn altijd correct gedocumenteerd in Swagger
+* Voor elke Request Handler is er een voorbeeldje in een van de HTTP files 
 
 ### html (react/JSX)
 
