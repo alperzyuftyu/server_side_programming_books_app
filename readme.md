@@ -62,12 +62,10 @@ public record BookDetailedDTO(int id, String title, String description,
     * JDBC URL: `jdbc:h2:mem:books`
     * Username: `sa`, no password
 * Postman:
-    * Import collection `Books.postman_collection.json`
-    * Or import swagger-doc: http://localhost:8080/v2/api-docs
+    * Import swagger-doc: http://localhost:8080/v2/api-docs
     * POST/PUT/DELETE require CSRF protection:
         * Copy value of `XSRF-TOKEN` Cookie to Header `X-XSRF-TOKEN`
         * This is done automatically in the collection - just create an environment first (e.g., dev)
-    * Important: always keep Postman collection up-to-date in the repo
 * Client served by server:
     * On index.html: http://localhost:8080/
     * Requires at least a "maven compile" first
