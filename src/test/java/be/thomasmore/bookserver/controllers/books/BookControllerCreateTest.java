@@ -28,10 +28,8 @@ public class BookControllerCreateTest extends AbstractIntegrationTest {
     @WithMockUser
     public void createBook() throws Exception {
         final String BOOK_TITLE = "It is simple to create a book";
-        final String BOOK_DESCRIPTION = "simple description";
-        // Using record constructor - 4 fields: id, title, description, authors
         BookDetailedDTO newBookDto = BookDetailedDTO.builder()
-                .id(0)
+                .id(null)
                 .title(BOOK_TITLE)
                 .build();
 
@@ -49,7 +47,6 @@ public class BookControllerCreateTest extends AbstractIntegrationTest {
     @WithMockUser
     public void createBook_titleCannotBeEmpty() throws Exception {
         BookDetailedDTO newBookDto = BookDetailedDTO.builder()
-                .id(0)
                 .title(null)
                 .build();
 
@@ -62,7 +59,6 @@ public class BookControllerCreateTest extends AbstractIntegrationTest {
     @WithMockUser
     public void createBook_titleCannotBeBlank() throws Exception {
         BookDetailedDTO newBookDto = BookDetailedDTO.builder()
-                .id(0)
                 .title("")
                 .build();
 
@@ -76,7 +72,6 @@ public class BookControllerCreateTest extends AbstractIntegrationTest {
     @WithMockUser
     public void createBook_titleHasToBeUnique() throws Exception {
         BookDetailedDTO newBookDto = BookDetailedDTO.builder()
-                .id(0)
                 .title("Recreate an existing book")
                 .build();
         MockHttpServletRequestBuilder mockRequest = getMockRequestPost("/api/books", newBookDto);

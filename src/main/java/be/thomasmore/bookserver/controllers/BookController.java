@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * REST controller for book operations.
- * Uses constructor injection (Spring best practice since Spring 4.3).
  */
 @RestController
 @RequestMapping("/api/books")
@@ -67,7 +66,7 @@ public class BookController {
                     "</br>" +
                     "Returns updated book. ")
     @PutMapping("{id}")
-    public BookDetailedDTO edit(@PathVariable int id, @RequestBody BookDetailedDTO bookDto) {
+    public BookDetailedDTO edit(@PathVariable int id, @Valid @RequestBody BookDetailedDTO bookDto) {
         log.info(String.format("##### edit book %d", id));
         return bookService.edit(id, bookDto);
     }

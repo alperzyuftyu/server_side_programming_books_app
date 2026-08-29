@@ -39,7 +39,6 @@ public class BookControllerCreateWithAuthorsTest extends AbstractIntegrationTest
         final String BOOK_TITLE = "Create a book with an author id";
         AuthorDTO authorDto = new AuthorDTO(1, null); // author 1 exists
         BookDetailedDTO newBookDto = BookDetailedDTO.builder()
-                .id(0)
                 .title(BOOK_TITLE)
                 .authors(List.of(authorDto))
                 .build();
@@ -64,7 +63,6 @@ public class BookControllerCreateWithAuthorsTest extends AbstractIntegrationTest
         final String AUTHOR_NAME = "Adrian Vandenhoof";
         AuthorDTO authorDTO = new AuthorDTO(1, AUTHOR_NAME);
         BookDetailedDTO newBookDto = BookDetailedDTO.builder()
-                .id(0)
                 .title(BOOK_TITLE)
                 .authors(List.of(authorDTO))
                 .build();

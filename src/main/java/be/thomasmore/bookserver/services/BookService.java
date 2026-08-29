@@ -17,8 +17,6 @@ import java.util.List;
 
 /**
  * Service for book-related business logic.
- * Uses constructor injection (Spring best practice since Spring 4.3).
- * Modern approach: builds complete DTOs before returning (no setters on records).
  */
 @Service
 public class BookService {
@@ -43,7 +41,6 @@ public class BookService {
                 ? bookRepository.findAll()
                 : bookRepository.findByTitleContainingIgnoreCase(titleKeyWord);
 
-        // JDK 16+ Stream.toList() - returns unmodifiable list, more concise than Collectors.toList()
         return books.stream()
                 .map(bookDTOConverter::convertToDto)
                 .toList();
@@ -62,7 +59,6 @@ public class BookService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
                         "Book with id %d not found.".formatted(bookId)));
 
-        // JDK 16+ Stream.toList()
         return book.getAuthors().stream()
                 .map(authorDTOConverter::convertToDto)
                 .toList();

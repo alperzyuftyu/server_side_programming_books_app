@@ -21,7 +21,6 @@ import java.security.Principal;
 
 /**
  * REST controller for authentication operations.
- * Uses constructor injection (Spring best practice since Spring 4.3).
  */
 @RestController
 @RequestMapping("/api")
