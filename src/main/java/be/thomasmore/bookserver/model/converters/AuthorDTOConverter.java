@@ -20,6 +20,6 @@ public interface AuthorDTOConverter {
         if (authorDto == null) {
             return null;
         }
-        return new Author(authorDto.id());
+        return new Author();
     }
 }

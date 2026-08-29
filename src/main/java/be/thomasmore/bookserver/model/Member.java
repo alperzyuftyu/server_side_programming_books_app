@@ -1,10 +1,12 @@
 package be.thomasmore.bookserver.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 
 @NoArgsConstructor
 @Data
@@ -18,9 +20,4 @@ public class Member {
     private String username;
 
     private String email;
-
-    public Member(String username, String email) {
-        this.username = username;
-        this.email = email;
-    }
 }

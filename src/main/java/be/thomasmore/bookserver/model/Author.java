@@ -1,12 +1,12 @@
 package be.thomasmore.bookserver.model;
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import jakarta.persistence.*;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -24,11 +24,5 @@ public class Author {
 
     @ManyToMany(mappedBy = "authors", fetch = FetchType.LAZY)
     private Set<Book> books;
-
-    public Author(int id) {
-        this.id = id;
-    }
-
-
 
 }
