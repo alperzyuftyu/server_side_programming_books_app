@@ -6,6 +6,7 @@ import be.thomasmore.bookserver.services.AuthorService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,5 +27,14 @@ public class AuthorController {
     @GetMapping("")
     public Iterable<AuthorDTO> findAllAuthors() {
         return authorService.findAll();
+    }
+
+    @Operation(summary = "get 1 author from database.",
+            description = "author with id is fetched from database" +
+                    "returns only id and name ")
+
+    @GetMapping("/{id:\\d+}")
+    public AuthorDTO findAuthorById(@PathVariable int id) {
+        return authorService.findById(id);
     }
 }

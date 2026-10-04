@@ -8,6 +8,7 @@ import be.thomasmore.bookserver.repositories.AuthorRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AuthorService {
@@ -28,5 +29,9 @@ public class AuthorService {
         return authors.stream()
                 .map(authorDTOConverter::convertToDto)
                 .toList();
+    }
+    public AuthorDTO findById(int id) {
+        Optional<Author> author = authorRepository.findById(id);
+        return authorDTOConverter.convertToDto(author.get());
     }
 }

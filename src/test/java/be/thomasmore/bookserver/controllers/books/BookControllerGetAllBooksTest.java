@@ -43,4 +43,21 @@ public class BookControllerGetAllBooksTest extends AbstractIntegrationTest {
                 .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].title").value("REST API Automation Testing from Scratch"));
     }
+    @Test void getAllBooksFilterEmptyKeyWord() throws Exception {
+        mockMvc.perform(getMockRequestGet("/api/books?titleKeyWord= "))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(2)));
+    }
+    @Test void getAllBooksFilterWithWrongKeyWord() throws Exception {
+        mockMvc.perform(getMockRequestGet("/api/books?titleKeyWord=hello world"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(0)));
+    }
+    @Test void getAllBooksFilterWithSpecialCharKeyWord() throws Exception {
+        mockMvc.perform(getMockRequestGet("/api/books?titleKeyWord=.,/#$%"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(0)));
+    }
+
+
 }
