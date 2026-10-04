@@ -25,16 +25,18 @@ public class BookController {
     }
 
     @Operation(summary = "list of books in the database.",
-            description = "If Request Parameter <b>titleKeyWord</b> is given: " +
-                    "only books where the title contains this titleKeyWord (ignore-case). </br>" +
+            description = "If Request Parameter <b>titleKeyWord</b>  and <b>language</b> is given: " +
+                    "only books where the title contains this titleKeyWord (ignore-case) and the language contains the language parameter. </br>" +
                     "Otherwise all books are returned. </br>" +
                     "</br>" +
                     "The authors Collection contains only id and name. </br>" +
                     "Use GET api/authors/{id}/authors  to fetch more info about the authors. ")
     @GetMapping("")
-    public Iterable<BookDTO> findAll(@RequestParam(required = false) String titleKeyWord) {
+    public Iterable<BookDTO> findAll(
+            @RequestParam(required = false) String titleKeyWord,
+            @RequestParam(required = false) String language) {
         log.info("##### findAll books - titleKeyWord=" + titleKeyWord);
-        return bookService.findAll(titleKeyWord);
+        return bookService.findAll(titleKeyWord, language);
     }
 
     @Operation(summary = "get 1 book from the database.",

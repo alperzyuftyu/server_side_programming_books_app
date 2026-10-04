@@ -12,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,10 +35,12 @@ public class BookService {
         this.authorDTOConverter = authorDTOConverter;
     }
 
-    public List<BookDTO> findAll(String titleKeyWord) {
-        final List<Book> books = titleKeyWord == null
-                ? bookRepository.findAll()
-                : bookRepository.findByTitleContainingIgnoreCase(titleKeyWord);
+    public List<BookDTO> findAll(String titleKeyWord, String language) {
+       // final List<Book> books = titleKeyWord == null
+           //     ? bookRepository.findAll()
+         //       : bookRepository.findByTitleContainingIgnoreCase(titleKeyWord);
+
+        final List<Book> books =bookRepository.findByFilters(titleKeyWord, language);
 
         return books.stream()
                 .map(bookDTOConverter::convertToDto)
