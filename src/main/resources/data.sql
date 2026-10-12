@@ -197,4 +197,9 @@ INSERT INTO member (username, email) VALUES ('stefan', 'stefan@thomasmore.be');
 INSERT INTO member (username, email) VALUES ('jan', 'jan@thomasmore.be');
 INSERT INTO member (username, email) VALUES ('niels', 'niels@thomasmore.be');
 
-
+INSERT INTO book_club (name,meeting_place,city,language) VALUES ('Leedclub De Boekenwurm','Bibliotheek Tweebronnen','Leuven','Nederlands');
+INSERT INTO book_club (name,meeting_place,city,language) VALUES ('Antwerp Book Circle','Café De Muze','Antwerpen','Engels');
+INSERT INTO book_club (name,meeting_place,city,language) VALUES ('Les Lecteurs Gantois','Huis van Alijn','Gent','Frans');
+INSERT INTO book_club (name,meeting_place,city,language) VALUES ('Brugse Leeskring','Concertgebouw Café','Brugge','Nederlands');
+INSERT INTO book_club (name,meeting_place,city,language) VALUES ('Literair Salon Mechelen','Het Predikheren','Mechelen','Nederlands');
+INSERT INTO book_club (name,meeting_place,city,language) VALUES ('Brussels Reading Club','Muntpunt','Brussel','Engels');
