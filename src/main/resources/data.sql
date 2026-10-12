@@ -1,8 +1,23 @@
-insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('Oryx and Crake', 2003, 'Een speculatieve fictie roman van Margaret Atwood.', 'ENGELS');
-insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('The year of the flood', 2009, 'Het tweede boek in de MaddAddam-trilogie.', 'Engels');
-insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('MaddAddam', 2013, 'Het spannende slotstuk van de trilogie.', 'Engels');
-insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('1Q84', 2009, 'Een dystopische roman geschreven door Haruki Murakami.', 'Nederlands');
-insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('De opwindvogelkronieken', 1994, 'Een meesterwerk over de zoektocht naar een vermiste kat en echtgenote.', 'Nederlands');
+
+INSERT INTO serie (id,name,description) VALUES(1,'MaddAddam-trilogie','Een speculatieve fictie trilogie van Margaret Atwood.');
+INSERT INTO serie (id,name,description) VALUES(2,'Harry Potter','De bekende fantasyreeks van J.K. Rowling.');
+INSERT INTO serie (id,name,description) VALUES(3,'In Vlaamse Velden','Historische boekenserie over de Eerste Wereldoorlog.');
+INSERT INTO serie (id,name,description) VALUES(4,'Het Rad des Tijds','Epische fantasy serie');
+INSERT INTO serie (id,name,description) VALUES(5,'De Kronieken van Narnia','Klassieke kinderboekenreeks.');
+INSERT INTO serie (id,name,description) VALUES(6,'Aspe Collectie','Spannende thrillers met commissaris Pieter Van In.');
+INSERT INTO serie (id,name,description) VALUES(7,'Murakami Dystopia','Verzameling van dystopische werken van Murakami.');
+INSERT INTO serie (id,name,description) VALUES(8,'Software Architecture Series','Boeken over modern software-ontwerp.');
+INSERT INTO serie (id,name,description) VALUES(9,'Vlaamse Realisten','Meesterwerken uit het Vlaamse sociaal-realisme.');
+INSERT INTO serie (id,name,description) VALUES(10,'Elsschot Klassiekers ','Verzameld werk van Willem Elsschot.');
+
+
+
+
+insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE,serie_id,sequence_number) values ('Oryx and Crake', 2003, 'Een speculatieve fictie roman van Margaret Atwood.', 'ENGELS',1,1);
+insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE,serie_id,sequence_number) values ('The year of the flood', 2009, 'Het tweede boek in de MaddAddam-trilogie.', 'Engels',1,2);
+insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE,serie_id,sequence_number) values ('MaddAddam', 2013, 'Het spannende slotstuk van de trilogie.', 'Engels',1,3);
+insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE,serie_id,sequence_number) values ('1Q84', 2009, 'Een dystopische roman geschreven door Haruki Murakami.', 'Nederlands',7,1);
+insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE,serie_id,sequence_number) values ('De opwindvogelkronieken', 1994, 'Een meesterwerk over de zoektocht naar een vermiste kat en echtgenote.', 'Nederlands',7,2);
 insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('Design Patterns', 1994, 'Klassiek software engineering boek over herbruikbare ontwerppatronen.', 'Engels');
 insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('Het verdriet van België', 1983, 'De bekendste roman van Hugo Claus over de oorlogsjaren in Vlaanderen.', 'Nederlands');
 insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('De kapellekensbaan', 1953, 'Sociaal-realistisch meesterwerk van Louis Paul Boon.', 'Nederlands');
@@ -28,8 +43,8 @@ insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('Vele 
 insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('Kom hier dat ik u kus', 2014, 'Psychologische roman over opgroeien en familierelaties.', 'Nederlands');
 insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('Duet met valse noten', 1983, 'Klassieke jeugdroman over een turbulente tienerliefde.', 'Nederlands');
 insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('De engelenmaker deel twee', 2010, 'Fictief vervolg op de succesvolle roman van Stefan Brijs.', 'Nederlands');
-insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('Het vierkant van de wraak', 1995, 'De eerste misdaadroman van Pieter Aspe met commissaris Van In.', 'Nederlands');
-insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('De Midasmoorden', 1996, 'Spannende thriller van Pieter Aspe gesitueerd in Brugge.', 'Nederlands');
+insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE,serie_id,sequence_number) values ('Het vierkant van de wraak', 1995, 'De eerste misdaadroman van Pieter Aspe met commissaris Van In.', 'Nederlands',6,1);
+insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE,serie_id,sequence_number) values ('De Midasmoorden', 1996, 'Spannende thriller van Pieter Aspe gesitueerd in Brugge.', 'Nederlands',6,2);
 insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('Kartonnen dozen', 1991, 'Autobiografisch werk over de jeugdliefde van Tom Lanoye.', 'Nederlands');
 insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('Sprakeloos en stil', 2012, 'Vervolg of gerelateerd werk aan de eerdere familieromans.', 'Nederlands');
 insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('Lijmen / Het been', 1924, 'Beroemd tweeluik over reclamepraktijken en ethische dilemma''s.', 'Nederlands');
@@ -196,5 +211,3 @@ INSERT INTO member (username, email) VALUES ('liesbeth', 'liesbeth@thomasmore.be
 INSERT INTO member (username, email) VALUES ('stefan', 'stefan@thomasmore.be');
 INSERT INTO member (username, email) VALUES ('jan', 'jan@thomasmore.be');
 INSERT INTO member (username, email) VALUES ('niels', 'niels@thomasmore.be');
-
-

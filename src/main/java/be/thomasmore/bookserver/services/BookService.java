@@ -8,10 +8,15 @@ import be.thomasmore.bookserver.model.dto.AuthorDTO;
 import be.thomasmore.bookserver.model.dto.BookDTO;
 import be.thomasmore.bookserver.model.dto.BookDetailedDTO;
 import be.thomasmore.bookserver.repositories.BookRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.Year;
 import java.util.List;
 
 /**
@@ -35,14 +40,26 @@ public class BookService {
         this.authorDTOConverter = authorDTOConverter;
     }
 
-    public List<BookDTO> findAll(String titleKeyWord, String language) {
+    public List<BookDTO> findAll(String titleKeyWord, String language, String sortBy, String author,int page, int size) {
        // final List<Book> books = titleKeyWord == null
            //     ? bookRepository.findAll()
          //       : bookRepository.findByTitleContainingIgnoreCase(titleKeyWord);
 
-        final List<Book> books =bookRepository.findByFilters(titleKeyWord, language);
+        Sort sort;
+        if("publicationYear".equals(sortBy)) {
+            sort = Sort.by( "publicationYear");
+        }else{
+            sort = Sort.by("title");
+        }
+        Pageable pageable = PageRequest.of(page, size, sort);
 
-        return books.stream()
+        final Page<Book> books =bookRepository.findByFilters(titleKeyWord, language,author,pageable);
+
+
+
+
+        return books.getContent()
+                .stream()
                 .map(bookDTOConverter::convertToDto)
                 .toList();
     }
@@ -52,7 +69,12 @@ public class BookService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
                         String.format("Book with id %d does not exist.", id)));
 
-        return bookDetailedDTOConverter.convertToDto(book);
+       BookDetailedDTO dto = bookDetailedDTOConverter.convertToDto(book);
+        Integer ageInYears = null;
+        if(book.getPublicationYear() != null) {
+            ageInYears = Year.now().getValue() - book.getPublicationYear();
+        }
+        return dto.toBuilder().ageInYears(ageInYears).build();
     }
 
     public List<AuthorDTO> authorsForBook(int bookId) {

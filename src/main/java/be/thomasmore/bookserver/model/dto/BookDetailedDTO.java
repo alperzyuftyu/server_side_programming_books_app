@@ -16,7 +16,8 @@ public record BookDetailedDTO(
         List<AuthorDTO> authors,
         Integer publicationYear,
         String language,
-        String description
+        String description,
+        Integer ageInYears
 
 ) {
     /**

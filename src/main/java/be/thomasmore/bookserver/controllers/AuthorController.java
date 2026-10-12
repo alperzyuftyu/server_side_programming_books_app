@@ -2,13 +2,11 @@ package be.thomasmore.bookserver.controllers;
 
 
 import be.thomasmore.bookserver.model.dto.AuthorDTO;
+import be.thomasmore.bookserver.model.dto.AuthorDetailedDTO;
 import be.thomasmore.bookserver.services.AuthorService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/authors")
@@ -30,11 +28,22 @@ public class AuthorController {
     }
 
     @Operation(summary = "get 1 author from database.",
-            description = "author with id is fetched from database" +
-                    "returns only id and name ")
+            description = "author with id is fetched from database " +
+                    "returns only id,name and collection of books ")
 
     @GetMapping("/{id:\\d+}")
-    public AuthorDTO findAuthorById(@PathVariable int id) {
+    public AuthorDetailedDTO findAuthorById(@PathVariable int id) {
         return authorService.findById(id);
     }
+
+    @Operation(summary = "get 1 author from database.",
+            description = "author with name is fetched from database" +
+                    "returns only id,name and collection of books ")
+
+
+    @GetMapping("{name:.*[a-zA-Z].*}")
+    public AuthorDetailedDTO findAuthorByName(@PathVariable String name) {
+        return authorService.findByName(name);
+    }
+
 }

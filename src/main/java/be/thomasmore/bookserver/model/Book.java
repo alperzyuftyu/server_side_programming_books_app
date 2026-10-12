@@ -42,5 +42,11 @@ public class Book {
 
     @ManyToMany(fetch = FetchType.LAZY)
     private List<Author> authors;
+
+    @ManyToOne
+    @JoinColumn(name = "serie_id")
+    private Serie serie;
+
+    private Integer sequenceNumber;
 }
 
