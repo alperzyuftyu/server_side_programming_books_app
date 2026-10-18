@@ -25,6 +25,7 @@ public class AuthorControllerGetAllAuthorsTest extends AbstractIntegrationTest {
                 .andExpect(jsonPath("$[0].name").value("Thomas Mann"))
                 .andExpect(jsonPath("$[1].id").value(2))
                 .andExpect(jsonPath("$[1].name").exists())
-                .andExpect(jsonPath("$[1].name").value("Isaac Asimov"));
+                .andExpect(jsonPath("$[1].name").value("Isaac Asimov"))
+                .andExpect(jsonPath("$[0].description").doesNotExist());
     }
 }

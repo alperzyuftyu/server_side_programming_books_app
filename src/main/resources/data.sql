@@ -211,3 +211,123 @@ INSERT INTO member (username, email) VALUES ('liesbeth', 'liesbeth@thomasmore.be
 INSERT INTO member (username, email) VALUES ('stefan', 'stefan@thomasmore.be');
 INSERT INTO member (username, email) VALUES ('jan', 'jan@thomasmore.be');
 INSERT INTO member (username, email) VALUES ('niels', 'niels@thomasmore.be');
+
+update author
+set description = 'Margaret Atwood was born in 1939 in Ottawa and grew up in
+northern Ontario, Quebec, and Toronto. Throughout her writing
+career, Margaret Atwood has received numerous awards and
+honourary degrees.'
+where id = 1;
+
+update author
+set description = 'Haruki Murakami is a popular contemporary Japanese writer
+and translator. His work has been described as ''easily accessible,
+yet profoundly complex''.'
+where id =2;
+update author
+set description = 'One of the ''Gang of four''.'
+where id =3;
+update author
+set description = 'One of the ''Gang of four''.'
+where id =4;
+update author
+set description = 'One of the ''Gang of four''.'
+where id =5;
+update author
+set description = 'One of the ''Gang of four''.'
+where id =6;
+
+update author
+set country = 'Canada'
+where id = 1;
+update author
+set country = 'Japan'
+where id = 2;
+update author
+set country = 'Switzerland'
+where id = 3;
+update author
+set country = 'Australia'
+where id = 4;
+update author
+set country = 'USA'
+where id = 5;
+update author
+set country = 'USA'
+where id = 6;
+
+update member
+set first_name = 'admin'
+where id = 1;
+update member
+set first_name = 'marie'
+where id = 2;
+update member
+set first_name = 'vera'
+where id = 3;
+update member
+set first_name = 'thomas'
+where id = 4;
+update member
+set first_name = 'anke'
+where id = 5;
+update member
+set first_name = 'filip'
+where id = 6;
+update member
+set first_name = 'liesbeth'
+where id = 7;
+update member
+set first_name = 'stefan'
+where id = 8;
+update member
+set first_name = 'jan'
+where id = 9;
+update member
+set first_name = 'niels'
+where id = 10;
+
+insert into MEMBER_FAVORITE_BOOKS (MEMBER_ID, FAVORITE_BOOKS_ID)
+values
+    ((select id from member where username='marie'), (select id from book where
+        title='Oryx and Crake'));
+insert into MEMBER_FAVORITE_BOOKS (MEMBER_ID, FAVORITE_BOOKS_ID)
+values
+    ((select id from member where username='marie'), (select id from book where
+        title='1Q84'));
+insert into MEMBER_FAVORITE_BOOKS (MEMBER_ID, FAVORITE_BOOKS_ID)
+values
+    ((select id from member where username='vera'), (select id from book where
+        title='Oryx and Crake'));
+insert into MEMBER_FAVORITE_BOOKS (MEMBER_ID, FAVORITE_BOOKS_ID)
+values
+    ((select id from member where username='vera'), (select id from book where
+        title='Design Patterns'));
+insert into MEMBER_FAVORITE_BOOKS (MEMBER_ID, FAVORITE_BOOKS_ID)
+values
+    ((select id from member where username='thomas'), (select id from book where
+        title='Het verdriet van België'));
+insert into MEMBER_FAVORITE_BOOKS (MEMBER_ID, FAVORITE_BOOKS_ID)
+values
+    ((select id from member where username='anke'), (select id from book where
+        title='Kaas'));
+insert into MEMBER_FAVORITE_BOOKS (MEMBER_ID, FAVORITE_BOOKS_ID)
+values
+    ((select id from member where username='filip'), (select id from book where
+        title='De leeuw van Vlaanderen'));
+insert into MEMBER_FAVORITE_BOOKS (MEMBER_ID, FAVORITE_BOOKS_ID)
+values
+    ((select id from member where username='liesbeth'), (select id from book where
+        title='Will'));
+insert into MEMBER_FAVORITE_BOOKS (MEMBER_ID, FAVORITE_BOOKS_ID)
+values
+    ((select id from member where username='stefan'), (select id from book where
+        title='Sprakeloos'));
+insert into MEMBER_FAVORITE_BOOKS (MEMBER_ID, FAVORITE_BOOKS_ID)
+values
+    ((select id from member where username='jan'), (select id from book where
+        title='Vallen'));
+insert into MEMBER_FAVORITE_BOOKS (MEMBER_ID, FAVORITE_BOOKS_ID)
+values
+    ((select id from member where username='niels'), (select id from book where
+        title='De helaasheid der dingen'));

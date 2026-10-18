@@ -11,7 +11,9 @@ public record AuthorDetailedDTO(
         Integer id,
         @NotBlank(message = "Author name should not be blank")
         String name,
-        Collection<BookDTO> books
+        Collection<BookDTO> books,
+        String description,
+        String country
 ) {
 
 

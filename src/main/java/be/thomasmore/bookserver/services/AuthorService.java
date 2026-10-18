@@ -38,6 +38,7 @@ public class AuthorService {
     }
     public AuthorDetailedDTO findById(int id) {
         Optional<Author> author = authorRepository.findById(id);
+        System.out.println(author.get().getDescription());
         return authorDetailedDTOConverter.convertToDto(author.get());
     }
     public AuthorDetailedDTO findByName(String name) {
