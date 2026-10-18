@@ -1,0 +1,1 @@
+alter table book drop column if exists author;

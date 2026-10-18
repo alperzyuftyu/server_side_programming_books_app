@@ -1,8 +1,23 @@
-insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('Oryx and Crake', 2003, 'Een speculatieve fictie roman van Margaret Atwood.', 'ENGELS');
-insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('The year of the flood', 2009, 'Het tweede boek in de MaddAddam-trilogie.', 'Engels');
-insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('MaddAddam', 2013, 'Het spannende slotstuk van de trilogie.', 'Engels');
-insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('1Q84', 2009, 'Een dystopische roman geschreven door Haruki Murakami.', 'Nederlands');
-insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('De opwindvogelkronieken', 1994, 'Een meesterwerk over de zoektocht naar een vermiste kat en echtgenote.', 'Nederlands');
+
+INSERT INTO serie (id,name,description) VALUES(1,'MaddAddam-trilogie','Een speculatieve fictie trilogie van Margaret Atwood.');
+INSERT INTO serie (id,name,description) VALUES(2,'Harry Potter','De bekende fantasyreeks van J.K. Rowling.');
+INSERT INTO serie (id,name,description) VALUES(3,'In Vlaamse Velden','Historische boekenserie over de Eerste Wereldoorlog.');
+INSERT INTO serie (id,name,description) VALUES(4,'Het Rad des Tijds','Epische fantasy serie');
+INSERT INTO serie (id,name,description) VALUES(5,'De Kronieken van Narnia','Klassieke kinderboekenreeks.');
+INSERT INTO serie (id,name,description) VALUES(6,'Aspe Collectie','Spannende thrillers met commissaris Pieter Van In.');
+INSERT INTO serie (id,name,description) VALUES(7,'Murakami Dystopia','Verzameling van dystopische werken van Murakami.');
+INSERT INTO serie (id,name,description) VALUES(8,'Software Architecture Series','Boeken over modern software-ontwerp.');
+INSERT INTO serie (id,name,description) VALUES(9,'Vlaamse Realisten','Meesterwerken uit het Vlaamse sociaal-realisme.');
+INSERT INTO serie (id,name,description) VALUES(10,'Elsschot Klassiekers ','Verzameld werk van Willem Elsschot.');
+
+
+
+
+insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE,serie_id,sequence_number) values ('Oryx and Crake', 2003, 'Een speculatieve fictie roman van Margaret Atwood.', 'ENGELS',1,1);
+insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE,serie_id,sequence_number) values ('The year of the flood', 2009, 'Het tweede boek in de MaddAddam-trilogie.', 'Engels',1,2);
+insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE,serie_id,sequence_number) values ('MaddAddam', 2013, 'Het spannende slotstuk van de trilogie.', 'Engels',1,3);
+insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE,serie_id,sequence_number) values ('1Q84', 2009, 'Een dystopische roman geschreven door Haruki Murakami.', 'Nederlands',7,1);
+insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE,serie_id,sequence_number) values ('De opwindvogelkronieken', 1994, 'Een meesterwerk over de zoektocht naar een vermiste kat en echtgenote.', 'Nederlands',7,2);
 insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('Design Patterns', 1994, 'Klassiek software engineering boek over herbruikbare ontwerppatronen.', 'Engels');
 insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('Het verdriet van België', 1983, 'De bekendste roman van Hugo Claus over de oorlogsjaren in Vlaanderen.', 'Nederlands');
 insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('De kapellekensbaan', 1953, 'Sociaal-realistisch meesterwerk van Louis Paul Boon.', 'Nederlands');
@@ -28,8 +43,8 @@ insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('Vele 
 insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('Kom hier dat ik u kus', 2014, 'Psychologische roman over opgroeien en familierelaties.', 'Nederlands');
 insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('Duet met valse noten', 1983, 'Klassieke jeugdroman over een turbulente tienerliefde.', 'Nederlands');
 insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('De engelenmaker deel twee', 2010, 'Fictief vervolg op de succesvolle roman van Stefan Brijs.', 'Nederlands');
-insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('Het vierkant van de wraak', 1995, 'De eerste misdaadroman van Pieter Aspe met commissaris Van In.', 'Nederlands');
-insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('De Midasmoorden', 1996, 'Spannende thriller van Pieter Aspe gesitueerd in Brugge.', 'Nederlands');
+insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE,serie_id,sequence_number) values ('Het vierkant van de wraak', 1995, 'De eerste misdaadroman van Pieter Aspe met commissaris Van In.', 'Nederlands',6,1);
+insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE,serie_id,sequence_number) values ('De Midasmoorden', 1996, 'Spannende thriller van Pieter Aspe gesitueerd in Brugge.', 'Nederlands',6,2);
 insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('Kartonnen dozen', 1991, 'Autobiografisch werk over de jeugdliefde van Tom Lanoye.', 'Nederlands');
 insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('Sprakeloos en stil', 2012, 'Vervolg of gerelateerd werk aan de eerdere familieromans.', 'Nederlands');
 insert into BOOK (TITLE, PUBLICATION_YEAR, DESCRIPTION, LANGUAGE) values ('Lijmen / Het been', 1924, 'Beroemd tweeluik over reclamepraktijken en ethische dilemma''s.', 'Nederlands');
@@ -197,4 +212,122 @@ INSERT INTO member (username, email) VALUES ('stefan', 'stefan@thomasmore.be');
 INSERT INTO member (username, email) VALUES ('jan', 'jan@thomasmore.be');
 INSERT INTO member (username, email) VALUES ('niels', 'niels@thomasmore.be');
 
+update author
+set description = 'Margaret Atwood was born in 1939 in Ottawa and grew up in
+northern Ontario, Quebec, and Toronto. Throughout her writing
+career, Margaret Atwood has received numerous awards and
+honourary degrees.'
+where id = 1;
 
+update author
+set description = 'Haruki Murakami is a popular contemporary Japanese writer
+and translator. His work has been described as ''easily accessible,
+yet profoundly complex''.'
+where id =2;
+update author
+set description = 'One of the ''Gang of four''.'
+where id =3;
+update author
+set description = 'One of the ''Gang of four''.'
+where id =4;
+update author
+set description = 'One of the ''Gang of four''.'
+where id =5;
+update author
+set description = 'One of the ''Gang of four''.'
+where id =6;
+
+update author
+set country = 'Canada'
+where id = 1;
+update author
+set country = 'Japan'
+where id = 2;
+update author
+set country = 'Switzerland'
+where id = 3;
+update author
+set country = 'Australia'
+where id = 4;
+update author
+set country = 'USA'
+where id = 5;
+update author
+set country = 'USA'
+where id = 6;
+
+update member
+set first_name = 'admin'
+where id = 1;
+update member
+set first_name = 'marie'
+where id = 2;
+update member
+set first_name = 'vera'
+where id = 3;
+update member
+set first_name = 'thomas'
+where id = 4;
+update member
+set first_name = 'anke'
+where id = 5;
+update member
+set first_name = 'filip'
+where id = 6;
+update member
+set first_name = 'liesbeth'
+where id = 7;
+update member
+set first_name = 'stefan'
+where id = 8;
+update member
+set first_name = 'jan'
+where id = 9;
+update member
+set first_name = 'niels'
+where id = 10;
+
+insert into MEMBER_FAVORITE_BOOKS (MEMBER_ID, FAVORITE_BOOKS_ID)
+values
+    ((select id from member where username='marie'), (select id from book where
+        title='Oryx and Crake'));
+insert into MEMBER_FAVORITE_BOOKS (MEMBER_ID, FAVORITE_BOOKS_ID)
+values
+    ((select id from member where username='marie'), (select id from book where
+        title='1Q84'));
+insert into MEMBER_FAVORITE_BOOKS (MEMBER_ID, FAVORITE_BOOKS_ID)
+values
+    ((select id from member where username='vera'), (select id from book where
+        title='Oryx and Crake'));
+insert into MEMBER_FAVORITE_BOOKS (MEMBER_ID, FAVORITE_BOOKS_ID)
+values
+    ((select id from member where username='vera'), (select id from book where
+        title='Design Patterns'));
+insert into MEMBER_FAVORITE_BOOKS (MEMBER_ID, FAVORITE_BOOKS_ID)
+values
+    ((select id from member where username='thomas'), (select id from book where
+        title='Het verdriet van België'));
+insert into MEMBER_FAVORITE_BOOKS (MEMBER_ID, FAVORITE_BOOKS_ID)
+values
+    ((select id from member where username='anke'), (select id from book where
+        title='Kaas'));
+insert into MEMBER_FAVORITE_BOOKS (MEMBER_ID, FAVORITE_BOOKS_ID)
+values
+    ((select id from member where username='filip'), (select id from book where
+        title='De leeuw van Vlaanderen'));
+insert into MEMBER_FAVORITE_BOOKS (MEMBER_ID, FAVORITE_BOOKS_ID)
+values
+    ((select id from member where username='liesbeth'), (select id from book where
+        title='Will'));
+insert into MEMBER_FAVORITE_BOOKS (MEMBER_ID, FAVORITE_BOOKS_ID)
+values
+    ((select id from member where username='stefan'), (select id from book where
+        title='Sprakeloos'));
+insert into MEMBER_FAVORITE_BOOKS (MEMBER_ID, FAVORITE_BOOKS_ID)
+values
+    ((select id from member where username='jan'), (select id from book where
+        title='Vallen'));
+insert into MEMBER_FAVORITE_BOOKS (MEMBER_ID, FAVORITE_BOOKS_ID)
+values
+    ((select id from member where username='niels'), (select id from book where
+        title='De helaasheid der dingen'));

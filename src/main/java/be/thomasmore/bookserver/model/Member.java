@@ -1,12 +1,11 @@
 package be.thomasmore.bookserver.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Set;
 
 @NoArgsConstructor
 @Data
@@ -20,4 +19,13 @@ public class Member {
     private String username;
 
     private String email;
+
+    private String firstName;
+    private String lastName;
+
+    @ManyToMany()
+    @JoinTable(name="member_favorite_books",
+    joinColumns = @JoinColumn(name="member_id"),
+    inverseJoinColumns = @JoinColumn(name="favorite_books_id"))
+    private Set<Book> favoriteBooks;
 }

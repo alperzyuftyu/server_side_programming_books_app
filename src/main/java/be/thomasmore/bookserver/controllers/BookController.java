@@ -10,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * REST controller for book operations.
  */
@@ -25,16 +27,23 @@ public class BookController {
     }
 
     @Operation(summary = "list of books in the database.",
-            description = "If Request Parameter <b>titleKeyWord</b> is given: " +
-                    "only books where the title contains this titleKeyWord (ignore-case). </br>" +
+            description = "If Request Parameter <b>titleKeyWord</b>  and <b>language</b> is given: " +
+                    "only books where the title contains this titleKeyWord (ignore-case) and the language contains the language parameter. </br> " +
+                    "and it can be also filtered by title , production year and Author " +
                     "Otherwise all books are returned. </br>" +
                     "</br>" +
                     "The authors Collection contains only id and name. </br>" +
                     "Use GET api/authors/{id}/authors  to fetch more info about the authors. ")
     @GetMapping("")
-    public Iterable<BookDTO> findAll(@RequestParam(required = false) String titleKeyWord) {
+    public List<BookDTO> findAll(
+            @RequestParam(required = false) String titleKeyWord,
+            @RequestParam(required = false) String language,
+            @RequestParam(required = false) String sortBy,
+            @RequestParam(required = false) String author,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
         log.info("##### findAll books - titleKeyWord=" + titleKeyWord);
-        return bookService.findAll(titleKeyWord);
+        return bookService.findAll(titleKeyWord, language, sortBy,author,page,size);
     }
 
     @Operation(summary = "get 1 book from the database.",
@@ -45,6 +54,7 @@ public class BookController {
     @GetMapping("{id}")
     public BookDetailedDTO findOne(@PathVariable int id) {
         log.info(String.format("##### findOne book %d", id));
+
         return bookService.findOne(id);
     }
 

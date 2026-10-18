@@ -22,6 +22,11 @@ public class Author {
     @NotBlank(message = "Author name should not be blank")
     private String name;
 
+    @Column(length = 1024)
+    private String description;
+
+    private String country;
+
     @ManyToMany(mappedBy = "authors", fetch = FetchType.LAZY)
     private Set<Book> books;
 

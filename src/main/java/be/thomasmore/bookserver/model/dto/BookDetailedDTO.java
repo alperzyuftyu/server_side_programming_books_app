@@ -13,7 +13,12 @@ public record BookDetailedDTO(
         Integer id,
         @NotBlank(message = "Book Title should not be blank")
         String title,
-        List<AuthorDTO> authors
+        List<AuthorDTO> authors,
+        Integer publicationYear,
+        String language,
+        String description,
+        Integer ageInYears
+
 ) {
     /**
      * Compact constructor for validation/normalization.
