@@ -5,6 +5,7 @@ import be.thomasmore.bookserver.model.dto.AuthorDTO;
 import be.thomasmore.bookserver.model.dto.AuthorDetailedDTO;
 import be.thomasmore.bookserver.services.AuthorService;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,4 +47,10 @@ public class AuthorController {
         return authorService.findByName(name);
     }
 
+
+    @PostMapping("")
+    public AuthorDetailedDTO create(@Valid @RequestBody AuthorDetailedDTO authorDto) {
+        log.info("##### create author");
+        return authorService.create(authorDto);
+    }
 }

@@ -46,4 +46,16 @@ public class AuthorService {
                 .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Author not found"));
         return authorDetailedDTOConverter.convertToDto(author);
     }
+
+    public AuthorDetailedDTO create(AuthorDetailedDTO authorDTO) {
+
+        AuthorDetailedDTO dtoForConversion = authorDTO.toBuilder()
+                .books(null)
+                .build();
+
+        final Author entityToSave = authorDetailedDTOConverter.convertToEntity(dtoForConversion);
+        entityToSave.setId(0);
+        final Author savedEntity = authorRepository.save(entityToSave);
+        return authorDetailedDTOConverter.convertToDto(savedEntity);
+    }
 }

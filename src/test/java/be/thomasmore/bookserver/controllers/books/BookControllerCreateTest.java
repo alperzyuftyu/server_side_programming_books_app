@@ -13,7 +13,6 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.springframework.test.context.jdbc.Sql.ExecutionPhase.AFTER_TEST_METHOD;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -107,4 +106,45 @@ public class BookControllerCreateTest extends AbstractIntegrationTest {
         assertThat(loadedBook.getTitle()).isEqualTo(BOOK_TITLE);
     }
 
+    @Test
+    @WithMockUser
+    public void createBook_allFieldsAreSaved() throws Exception {
+
+        BookDetailedDTO newBookDto = BookDetailedDTO.builder()
+                .title("Complete Test Book")
+                .publicationYear(2020)
+                .language("English")
+                .description("Test description")
+                .build();
+
+        mockMvc.perform(getMockRequestPost("/api/books", newBookDto))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.title").value("Complete Test Book"))
+                .andExpect(jsonPath("$.publicationYear").value(2020))
+                .andExpect(jsonPath("$.language").value("English"))
+                .andExpect(jsonPath("$.description").value("Test description"))
+                .andExpect(jsonPath("$.authors").isEmpty());
+
+        Book loadedBook = bookRepository
+                .findByTitle("Complete Test Book")
+                .orElseThrow();
+
+        assertThat(loadedBook.getPublicationYear()).isEqualTo(2020);
+        assertThat(loadedBook.getLanguage()).isEqualTo("English");
+        assertThat(loadedBook.getDescription()).isEqualTo("Test description");
+    }
+
+    @Test
+    @WithMockUser
+    public void createBook_titleCannotContainOnlySpaces() throws Exception {
+
+        BookDetailedDTO newBookDto = BookDetailedDTO.builder()
+                .title("   ")
+                .build();
+
+        mockMvc.perform(getMockRequestPost("/api/books", newBookDto))
+                .andExpect(status().isBadRequest());
+
+        assertThat(bookRepository.count()).isEqualTo(0);
+    }
 }

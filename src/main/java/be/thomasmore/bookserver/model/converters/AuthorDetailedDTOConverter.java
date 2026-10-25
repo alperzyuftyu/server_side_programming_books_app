@@ -15,5 +15,13 @@ public interface AuthorDetailedDTOConverter {
      */
     AuthorDetailedDTO convertToDto(Author author);
 
+    /**
+     * Convert DTO to new entity for creation.
+     *
+     * @param authorDto the data from client
+     * @return new Author entity ready to save
+     */
+    Author convertToEntity(AuthorDetailedDTO authorDto);
+
 
 }
