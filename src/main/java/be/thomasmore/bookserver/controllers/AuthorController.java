@@ -5,7 +5,9 @@ import be.thomasmore.bookserver.model.dto.AuthorDTO;
 import be.thomasmore.bookserver.model.dto.AuthorDetailedDTO;
 import be.thomasmore.bookserver.services.AuthorService;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -46,4 +48,45 @@ public class AuthorController {
         return authorService.findByName(name);
     }
 
+
+
+
+
+    @Operation(summary = "create a new author in the database.",
+            description = "The name of the author can be dublicated.</br>" +
+                    "The books are <b>not</b> updated in the new author.</br>" +
+                    "Use PUT api/authors/{id}/books to update those. </br>" +
+                    "</br>" +
+                    "Returns new authoryyy (containing id from database). ")
+    @PostMapping("")
+    public AuthorDetailedDTO create(@Valid @RequestBody AuthorDetailedDTO authorDto) {
+        log.info("##### create author");
+        return authorService.create(authorDto);
+    }
+
+
+
+    @Operation(summary = "edit existing author in the database.",
+            description = "The books are <b>not</b> updated in the new author.</br>" +
+                    "Use PUT api/author/{id}/books to update those. </br>" +
+                    "</br>" +
+                    "Returns updated author. ")
+    @PutMapping("/{id}")
+    public AuthorDetailedDTO edit(
+            @PathVariable int id,
+            @Valid @RequestBody AuthorDetailedDTO authorDto
+    ) {
+        return authorService.edit(id, authorDto);
+    }
+
+    @Operation(summary = "delete a author from the database.",
+            description = "author with the given id is removed from the database. </br>" +
+                    "If the author does not exist, a 404 NOT FOUND status is returned. </br>" +
+                    "When successful, this request returns a 204 NO_CONTENT.")
+    @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable int id) {
+        log.info(String.format("##### delete author %d", id));
+        authorService.delete(id);
+    }
 }

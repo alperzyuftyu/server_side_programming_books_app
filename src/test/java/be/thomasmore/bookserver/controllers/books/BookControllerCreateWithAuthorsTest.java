@@ -48,7 +48,7 @@ public class BookControllerCreateWithAuthorsTest extends AbstractIntegrationTest
                 .andExpect(jsonPath("$.authors").isEmpty());
 
         //book is created in db:
-        Book loadedBook = bookRepository.findByTitle(BOOK_TITLE).orElseThrow();
+        Book loadedBook = bookRepository.findByTitleIgnoreCase(BOOK_TITLE).orElseThrow();
         assertThat(loadedBook.getTitle()).isEqualTo(BOOK_TITLE);
 
         //book does not have authors in db:
@@ -72,7 +72,7 @@ public class BookControllerCreateWithAuthorsTest extends AbstractIntegrationTest
                 .andExpect(jsonPath("$.authors").isEmpty());
 
         //book is created in db:
-        Book loadedBook = bookRepository.findByTitle(BOOK_TITLE).orElseThrow();
+        Book loadedBook = bookRepository.findByTitleIgnoreCase(BOOK_TITLE).orElseThrow();
         assertThat(loadedBook.getTitle()).isEqualTo(BOOK_TITLE);
 
         //book does not have authors in db:

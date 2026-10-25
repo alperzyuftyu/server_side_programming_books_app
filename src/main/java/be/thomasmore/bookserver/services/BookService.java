@@ -18,6 +18,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.time.Year;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Service for book-related business logic.
@@ -88,7 +89,7 @@ public class BookService {
     }
 
     public BookDetailedDTO create(BookDetailedDTO bookDto) {
-        if (bookRepository.findByTitle(bookDto.title()).isPresent()) {
+        if (bookRepository.findByTitleIgnoreCase(bookDto.title()).isPresent()) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
                     "Book with title %s already exists.".formatted(bookDto.title()));
         }
@@ -113,6 +114,19 @@ public class BookService {
         Book bookFromDb = bookRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
                         "Book with id %d not found.".formatted(id)));
+
+        Optional<Book> bookWithSameTitle =
+                bookRepository.findByTitleIgnoreCase(bookDto.title());
+
+        if (bookWithSameTitle.isPresent()
+                && bookWithSameTitle.get().getId() != id) {
+
+            throw new ResponseStatusException(
+                    HttpStatus.CONFLICT,
+                    "Book with title '%s' already exists."
+                            .formatted(bookDto.title())
+            );
+        }
 
         // Overwrite fields present in bookDto - relations are not touched
         Book bookSaved = bookRepository.save(bookDetailedDTOConverter.convertToEntity(bookDto, bookFromDb));

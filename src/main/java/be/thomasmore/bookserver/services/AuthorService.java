@@ -46,4 +46,58 @@ public class AuthorService {
                 .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Author not found"));
         return authorDetailedDTOConverter.convertToDto(author);
     }
+
+    public AuthorDetailedDTO create(AuthorDetailedDTO authorDTO) {
+
+        AuthorDetailedDTO dtoForConversion = authorDTO.toBuilder()
+                .books(null)
+                .build();
+
+        final Author entityToSave = authorDetailedDTOConverter.convertToEntity(dtoForConversion);
+        entityToSave.setId(0);
+        final Author savedEntity = authorRepository.save(entityToSave);
+        return authorDetailedDTOConverter.convertToDto(savedEntity);
+    }
+
+
+    public AuthorDetailedDTO edit(int id, AuthorDetailedDTO authorDto) {
+
+        if (authorDto.id() == null || authorDto.id() != id) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST,
+                    "id in author (%s) does not match id in url (%d)."
+                            .formatted(authorDto.id(), id)
+            );
+        }
+
+        Author authorFromDb = authorRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Author with id %d not found.".formatted(id)
+                ));
+
+        Author savedAuthor = authorRepository.save(
+                authorDetailedDTOConverter.convertToEntity(authorDto, authorFromDb)
+        );
+
+        return authorDetailedDTOConverter.convertToDto(savedAuthor);
+    }
+
+    public void delete(int id) {
+
+        Author author = authorRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Author with id %d not found.".formatted(id)
+                ));
+
+        if (!author.getBooks().isEmpty()) {
+            throw new ResponseStatusException(
+                    HttpStatus.CONFLICT,
+                    "Author cannot be deleted because this author still has books."
+            );
+        }
+
+        authorRepository.delete(author);
+    }
 }

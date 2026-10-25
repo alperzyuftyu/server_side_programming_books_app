@@ -108,4 +108,52 @@ public class SerieService {
                 .currentPage(pages.getNumber())
                 .build();
     }
+
+    public SerieDetailedDTO create(SerieDetailedDTO serieDto) {
+
+
+
+        final Serie entityToSave = serieDetailedDTOConverter.convertToEntity(serieDto);
+        entityToSave.setId(null);
+        final Serie savedEntity = serieRepository.save(entityToSave);
+        return serieDetailedDTOConverter.convertToDto(savedEntity);
+    }
+
+    public SerieDetailedDTO edit(int id, SerieDetailedDTO serieDto) {
+
+        if (serieDto.id() == null || serieDto.id() != id) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST,
+                    "id in serie (%s) does not match id in url (%d)."
+                            .formatted(serieDto.id(), id)
+            );
+        }
+
+        Serie serieFromDb = serieRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Serie with id %d not found.".formatted(id)
+                ));
+
+        Serie savedSerie = serieRepository.save(
+                serieDetailedDTOConverter.convertToEntity(
+                        serieDto,
+                        serieFromDb
+                )
+        );
+
+        return serieDetailedDTOConverter.convertToDto(savedSerie);
+    }
+
+    public void delete(int id) {
+
+        if (!serieRepository.existsById(id)) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND,
+                    "Serie with id %d not found.".formatted(id)
+            );
+        }
+
+        serieRepository.deleteById(id);
+    }
 }
