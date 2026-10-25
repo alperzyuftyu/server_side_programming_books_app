@@ -7,6 +7,7 @@ import be.thomasmore.bookserver.services.AuthorService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -76,5 +77,16 @@ public class AuthorController {
             @Valid @RequestBody AuthorDetailedDTO authorDto
     ) {
         return authorService.edit(id, authorDto);
+    }
+
+    @Operation(summary = "delete a author from the database.",
+            description = "author with the given id is removed from the database. </br>" +
+                    "If the author does not exist, a 404 NOT FOUND status is returned. </br>" +
+                    "When successful, this request returns a 204 NO_CONTENT.")
+    @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable int id) {
+        log.info(String.format("##### delete author %d", id));
+        authorService.delete(id);
     }
 }

@@ -82,4 +82,12 @@ public class AuthorService {
 
         return authorDetailedDTOConverter.convertToDto(savedAuthor);
     }
+
+    public void delete(int id) {
+        if (!authorRepository.existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+                    "Book with id %d not found.".formatted(id));
+        }
+        authorRepository.deleteById(id);
+    }
 }
