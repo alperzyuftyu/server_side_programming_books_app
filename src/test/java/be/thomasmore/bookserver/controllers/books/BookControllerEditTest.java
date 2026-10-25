@@ -21,6 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         executionPhase = AFTER_TEST_METHOD
 )
 
+
 public class BookControllerEditTest extends AbstractIntegrationTest {
 
     @Autowired
@@ -73,6 +74,44 @@ public class BookControllerEditTest extends AbstractIntegrationTest {
                 .orElseThrow();
 
         assertThat(book.getTitle()).isEqualTo("Old title");
+    }
+
+    @Test
+    @WithMockUser
+    public void editBook_titleAlreadyExists() throws Exception {
+
+        BookDetailedDTO updatedBookDto = BookDetailedDTO.builder()
+                .id(1)
+                .title("1984")
+                .build();
+
+        mockMvc.perform(
+                        getMockRequestPut("/api/books/1", updatedBookDto)
+                )
+                .andExpect(status().isConflict());
+
+        Book book = bookRepository.findById(1)
+                .orElseThrow();
+
+        assertThat(book.getTitle()).isEqualTo("Old title");
+
+        assertThat(bookRepository.count()).isEqualTo(2);
+    }
+
+    @Test
+    @WithMockUser
+    public void editBook_sameTitleOfCurrentBookIsAllowed() throws Exception {
+
+        BookDetailedDTO updatedBookDto = BookDetailedDTO.builder()
+                .id(1)
+                .title("old title")
+                .description("Updated description")
+                .build();
+
+        mockMvc.perform(
+                        getMockRequestPut("/api/books/1", updatedBookDto)
+                )
+                .andExpect(status().isOk());
     }
 
 }

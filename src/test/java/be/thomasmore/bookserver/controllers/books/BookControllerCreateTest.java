@@ -17,6 +17,7 @@ import static org.springframework.test.context.jdbc.Sql.ExecutionPhase.AFTER_TES
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+
 @Sql(scripts = "/sql/books/clean_books.sql", executionPhase = AFTER_TEST_METHOD)
 public class BookControllerCreateTest extends AbstractIntegrationTest {
 
@@ -38,7 +39,7 @@ public class BookControllerCreateTest extends AbstractIntegrationTest {
                 .andExpect(jsonPath("$.title").value(BOOK_TITLE))
                 .andExpect(jsonPath("$.authors").isEmpty());
 
-        Book loadedBook = bookRepository.findByTitle(BOOK_TITLE).orElseThrow();
+        Book loadedBook = bookRepository.findByTitleIgnoreCase(BOOK_TITLE).orElseThrow();
         assertThat(loadedBook.getTitle()).isEqualTo(BOOK_TITLE);
     }
 
@@ -101,7 +102,7 @@ public class BookControllerCreateTest extends AbstractIntegrationTest {
                 .andExpect(jsonPath("$.title").value(BOOK_TITLE))
                 .andExpect(jsonPath("$.authors").isEmpty());
 
-        Book loadedBook = bookRepository.findByTitle(BOOK_TITLE).orElseThrow();
+        Book loadedBook = bookRepository.findByTitleIgnoreCase(BOOK_TITLE).orElseThrow();
         assertThat(loadedBook.getId()).isEqualTo(1); // not 57!
         assertThat(loadedBook.getTitle()).isEqualTo(BOOK_TITLE);
     }
@@ -126,7 +127,7 @@ public class BookControllerCreateTest extends AbstractIntegrationTest {
                 .andExpect(jsonPath("$.authors").isEmpty());
 
         Book loadedBook = bookRepository
-                .findByTitle("Complete Test Book")
+                .findByTitleIgnoreCase("Complete Test Book")
                 .orElseThrow();
 
         assertThat(loadedBook.getPublicationYear()).isEqualTo(2020);
@@ -147,4 +148,6 @@ public class BookControllerCreateTest extends AbstractIntegrationTest {
 
         assertThat(bookRepository.count()).isEqualTo(0);
     }
+
+
 }

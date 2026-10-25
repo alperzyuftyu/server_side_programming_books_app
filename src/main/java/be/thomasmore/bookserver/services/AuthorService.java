@@ -84,10 +84,20 @@ public class AuthorService {
     }
 
     public void delete(int id) {
-        if (!authorRepository.existsById(id)) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
-                    "Book with id %d not found.".formatted(id));
+
+        Author author = authorRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Author with id %d not found.".formatted(id)
+                ));
+
+        if (!author.getBooks().isEmpty()) {
+            throw new ResponseStatusException(
+                    HttpStatus.CONFLICT,
+                    "Author cannot be deleted because this author still has books."
+            );
         }
-        authorRepository.deleteById(id);
+
+        authorRepository.delete(author);
     }
 }

@@ -1,6 +1,7 @@
 package be.thomasmore.bookserver.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,8 @@ public class Member {
     @NotBlank(message = "Username should not be blank")
     private String username;
 
+    @NotBlank(message = "Email should not be blank")
+    @Email(message = "Email should have a valid format")
     private String email;
 
     private String firstName;
