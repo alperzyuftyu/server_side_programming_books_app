@@ -58,4 +58,28 @@ public class AuthorService {
         final Author savedEntity = authorRepository.save(entityToSave);
         return authorDetailedDTOConverter.convertToDto(savedEntity);
     }
+
+
+    public AuthorDetailedDTO edit(int id, AuthorDetailedDTO authorDto) {
+
+        if (authorDto.id() == null || authorDto.id() != id) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST,
+                    "id in author (%s) does not match id in url (%d)."
+                            .formatted(authorDto.id(), id)
+            );
+        }
+
+        Author authorFromDb = authorRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Author with id %d not found.".formatted(id)
+                ));
+
+        Author savedAuthor = authorRepository.save(
+                authorDetailedDTOConverter.convertToEntity(authorDto, authorFromDb)
+        );
+
+        return authorDetailedDTOConverter.convertToDto(savedAuthor);
+    }
 }

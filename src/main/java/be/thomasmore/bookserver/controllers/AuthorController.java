@@ -48,9 +48,33 @@ public class AuthorController {
     }
 
 
+
+
+
+    @Operation(summary = "create a new author in the database.",
+            description = "The name of the author can be dublicated.</br>" +
+                    "The books are <b>not</b> updated in the new author.</br>" +
+                    "Use PUT api/authors/{id}/books to update those. </br>" +
+                    "</br>" +
+                    "Returns new authoryyy (containing id from database). ")
     @PostMapping("")
     public AuthorDetailedDTO create(@Valid @RequestBody AuthorDetailedDTO authorDto) {
         log.info("##### create author");
         return authorService.create(authorDto);
+    }
+
+
+
+    @Operation(summary = "edit existing author in the database.",
+            description = "The books are <b>not</b> updated in the new author.</br>" +
+                    "Use PUT api/author/{id}/books to update those. </br>" +
+                    "</br>" +
+                    "Returns updated author. ")
+    @PutMapping("/{id}")
+    public AuthorDetailedDTO edit(
+            @PathVariable int id,
+            @Valid @RequestBody AuthorDetailedDTO authorDto
+    ) {
+        return authorService.edit(id, authorDto);
     }
 }
