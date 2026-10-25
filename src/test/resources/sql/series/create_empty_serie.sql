@@ -4,3 +4,6 @@ values (
            'Empty Serie',
            'Serie without books'
        );
+
+INSERT INTO serie (id, name)
+VALUES (1, 'Old Serie Name');

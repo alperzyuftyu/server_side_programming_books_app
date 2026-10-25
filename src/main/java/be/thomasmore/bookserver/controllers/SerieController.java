@@ -4,7 +4,9 @@ import be.thomasmore.bookserver.model.dto.SerieDetailedDTO;
 import be.thomasmore.bookserver.model.dto.SeriePagedResponseDTO;
 import be.thomasmore.bookserver.services.SerieService;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
@@ -50,5 +52,40 @@ public class SerieController {
             @RequestParam(defaultValue = "") String sortBy)
      {
         return serieService.findAll(page, size,name,books,sortBy);
+    }
+
+
+    @Operation(summary = "create a new serie in the database.",
+            description =
+                    "The books are <b>not</b> updated in the new serie.</br>" +
+                    "Use PUT api/serie/{id}/books to update those. </br>" +
+                    "</br>" +
+                    "Returns new serie (containing id from database). ")
+    @PostMapping
+    public SerieDetailedDTO create(
+            @Valid @RequestBody SerieDetailedDTO serieDto
+    ) {
+        return serieService.create(serieDto);
+    }
+
+
+    @Operation(summary = "update a existing serie in the database.",
+            description =
+                    "The books are <b>not</b> updated in the new serie.</br>" +
+                            "Use PUT api/serie/{id}/books to update those. </br>" +
+                            "</br>" +
+                            "Returns new serie (containing id from database). ")
+    @PutMapping("/{id}")
+    public SerieDetailedDTO edit(
+            @PathVariable int id,
+            @Valid @RequestBody SerieDetailedDTO serieDto
+    ) {
+        return serieService.edit(id, serieDto);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable int id) {
+        serieService.delete(id);
     }
 }
